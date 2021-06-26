@@ -1,0 +1,20 @@
+CREATE TABLE BIKE (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    model VARCHAR(50) NOT NULL,
+    color VARCHAR(50) NULL,
+    pin BIGINT NOT NULL,
+    inserted_Into_Station DATE NULL
+);
+
+CREATE TABLE STHG (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    model VARCHAR(50) NOT NULL,
+    color VARCHAR(50) NULL,
+    pin BIGINT NOT NULL,
+    inserted_Into_Station DATE NULL
+);
+
+ALTER TABLE BIKE
+    ADD CONSTRAINT unique_pin UNIQUE (pin)
+
+
