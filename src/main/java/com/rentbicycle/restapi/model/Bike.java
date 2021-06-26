@@ -2,10 +2,9 @@ package com.rentbicycle.restapi.model;
 
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -14,6 +13,7 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Bike {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +23,11 @@ public class Bike {
     private long pin;
     @CreatedDate
     private LocalDate insertedIntoStation;
+
+    public void editBike(Bike other) {
+        model = other.model == null ? model : other.model;
+        color = other.color == null ? color : other.color;
+        pin = other.pin == 0 ? pin : other.pin;
+        insertedIntoStation = other.insertedIntoStation == null ? insertedIntoStation : other.insertedIntoStation;
+    }
 }
