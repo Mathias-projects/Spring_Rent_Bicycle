@@ -18,6 +18,7 @@ public class Bike {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private Long rentStationId;
     private String model;
     private String color;
     private long pin;
