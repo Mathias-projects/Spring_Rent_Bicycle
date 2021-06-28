@@ -1,7 +1,9 @@
 package com.rentbicycle.restapi.controller;
 
 
+import com.rentbicycle.restapi.helper.BikeDtoMapper;
 import com.rentbicycle.restapi.model.Bike;
+import com.rentbicycle.restapi.model.dto.BikeDto;
 import com.rentbicycle.restapi.service.BikeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,13 +21,14 @@ public class BikeController {
     private final BikeService bikeService;
 
     @GetMapping("/bikes")
-    public List<Bike> getBikes(Optional<Integer> page, Optional<Sort.Direction> sort){
-        return bikeService.getBikes(page.orElse(0), sort.orElse(Sort.Direction.ASC)).getContent();
+    public List<BikeDto> getBikes(Optional<Integer> page, Optional<Sort.Direction> sort){
+        return BikeDtoMapper.mapToBikeDto(bikeService.
+                getBikes(page.orElse(0), sort.orElse(Sort.Direction.ASC)).getContent());
     }
 
     @GetMapping("/bikes/{id}")
-    public Bike getSinglePost(@PathVariable long id) {
-        return bikeService.getSingleBike(id);
+    public BikeDto getSinglePost(@PathVariable long id) {
+        return BikeDtoMapper.mapToBikeDto(bikeService.getSingleBike(id));
     }
 
     @DeleteMapping("/bikes/{id}")

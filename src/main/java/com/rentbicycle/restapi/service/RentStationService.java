@@ -21,7 +21,7 @@ public class RentStationService {
        return rentStationRepository.findAll(PageRequest.of(page, PAGE_SIZE, Sort.by(sort,"id")));
     }
 
-    public RentStation getRentStation(long id) {
+    public RentStation getSingleRentStation(long id) {
         return rentStationRepository.findById(id).get();
     }
 
