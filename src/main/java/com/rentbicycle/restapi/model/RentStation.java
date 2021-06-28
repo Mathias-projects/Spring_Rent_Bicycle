@@ -21,6 +21,9 @@ public class RentStation {
     @OneToMany
     @JoinColumn(name = "rentStationId", updatable = false, insertable = false)
     private List<Bike> bikes;
+    @OneToMany
+    @JoinColumn(name = "rentStationId", updatable = false, insertable = false)
+    private List<Rent> rents;
 
     @PreRemove
     private void preRemove() {

@@ -26,7 +26,7 @@ public class RentStationController {
 
     @GetMapping("/rentStations/{id}")
     public RentStationDto getRentStation(@PathVariable long id) {
-        return RentStationDtoMapper.mapToRentStationDto(rentStationService.getRentStation(id));
+        return RentStationDtoMapper.mapToRentStationDto(rentStationService.getSingleRentStation(id));
     }
 
     @GetMapping("/rentStations/bikes")
@@ -36,7 +36,7 @@ public class RentStationController {
 
     @GetMapping("/rentStations/bikes/{id}")
     public RentStation getRentStationWithBikes(@PathVariable long id) {
-        return rentStationService.getRentStation(id);
+        return rentStationService.getSingleRentStation(id);
     }
 
     @PostMapping("/rentStations")

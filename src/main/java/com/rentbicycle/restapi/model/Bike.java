@@ -13,22 +13,22 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 public class Bike {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private Long rentStationId;
+    @OneToOne(mappedBy = "bike")
+    private Rent rent;
     private String model;
     private String color;
     private long pin;
-    @CreatedDate
-    private LocalDate insertedIntoStation;
 
     public void editBike(Bike other) {
         model = other.model == null ? model : other.model;
         color = other.color == null ? color : other.color;
         pin = other.pin == 0 ? pin : other.pin;
-        insertedIntoStation = other.insertedIntoStation == null ? insertedIntoStation : other.insertedIntoStation;
+        rentStationId = other.rentStationId == null ? rentStationId : other.rentStationId;
+        rent = other.rent == null ? rent : other.rent;
     }
 }

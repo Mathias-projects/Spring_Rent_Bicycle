@@ -42,11 +42,10 @@ public class DataGenerator {
                         .color(availableColors.get(i%4))
                         .model(availableModels.get(i%6))
                         .pin(1025813 + i)
-                        .insertedIntoStation(LocalDate.of(2020,5,10).plusDays(i))
                         .build();
-                dataSql.append("INSERT INTO BIKE(id, rent_station_id, model, color, pin, inserted_Into_Station) " +
+                dataSql.append("INSERT INTO BIKE(id, rent_station_id, model, color, pin) " +
                         "VALUES (" + i + ", " + currentBike.getRentStationId() + ", '" + currentBike.getModel() + "', '" + currentBike.getColor() + "', " +
-                        currentBike.getPin() + ", '" + currentBike.getInsertedIntoStation() +"');\n");
+                        currentBike.getPin() +");\n");
             }
         } catch (IOException e) {
             e.printStackTrace();

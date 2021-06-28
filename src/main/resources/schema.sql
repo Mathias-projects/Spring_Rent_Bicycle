@@ -1,10 +1,10 @@
 CREATE TABLE BIKE (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     rent_station_id BIGINT NULL,
+    rent_id BIGINT NULL,
     model VARCHAR(50) NOT NULL,
     color VARCHAR(50) NULL,
-    pin BIGINT NOT NULL,
-    inserted_Into_Station DATE NULL
+    pin BIGINT NOT NULL
 );
 
 CREATE TABLE RENT_STATION (
@@ -13,10 +13,27 @@ CREATE TABLE RENT_STATION (
     city VARCHAR(70) NULL
 );
 
+CREATE TABLE RENT (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    rented_date DATETIME NOT NULL,
+    rent_station_id BIGINT NULL,
+    bike_id BIGINT NOT NULL
+);
+
 ALTER TABLE BIKE
     ADD CONSTRAINT unique_pin UNIQUE (pin);
 ALTER TABLE BIKE
     ADD CONSTRAINT bike_rent_station_id
     FOREIGN KEY (rent_station_id) REFERENCES RENT_STATION(id);
+
+ALTER TABLE RENT
+    ADD CONSTRAINT rent_bike_id
+    FOREIGN KEY (bike_id) REFERENCES BIKE(id);
+ALTER TABLE RENT
+    ADD CONSTRAINT rent_rent_station_id
+    FOREIGN KEY (rent_station_id) REFERENCES RENT_STATION(id);
+ALTER TABLE RENT
+    ADD CONSTRAINT unique_bike UNIQUE (bike_id);
 
 
